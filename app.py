@@ -126,7 +126,7 @@ if uploaded_file is not None:
                         mime="text/csv"
                     )
 
-                   def gerar_grafico_dominio(df_dados, prefixo, titulo, cor_paleta):
+                    def gerar_grafico_dominio(df_dados, prefixo, titulo, cor_paleta):
                         df_dominio = df_dados[df_dados['Origem (CDV)'].str.startswith(prefixo, na=False)].copy()
 
                         if df_dominio.empty:
@@ -145,10 +145,7 @@ if uploaded_file is not None:
                         sns.set_theme(style="whitegrid")
                         grafico = sns.barplot(x='Origem (CDV)', y='Frequência', data=frequencia, palette=cor_paleta, hue='Origem (CDV)', legend=False, ax=ax)
                         
-                        # --- LINHA ATUALIZADA COM A DATA SELECIONADA ---
-                        data_formatada = data_selecionada.strftime('%d/%m/%Y')
-                        ax.set_title(f'Frequência de Oscilações (<={delta_maximo}s) {titulo} - {data_formatada}', fontsize=11, fontweight='bold', pad=15)
-                        
+                        ax.set_title(f'Frequência de Oscilações (<={delta_maximo}s) {titulo}', fontsize=11, fontweight='bold', pad=15)
                         ax.tick_params(axis='x', rotation=45)
                         
                         for p in grafico.patches:
